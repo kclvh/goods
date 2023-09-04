@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.inssa.goods.DAO.GoodsDAO">
+    <!--회원용 목록, 관리자용 목록-->
+    <select id="selectAll" resultType="GoodsVO">
+        select * from goods_tbl
+    </select>
+    <!--상품등록(관리자)-->
+    <insert id="insert">
+        insert into goods_tbl(ggoods, gcontent, gprice, gquan, gimgfile)
+        values (#{ggoods}, #{gcontent}, #{gprice}, #{gquan}, #{gimgfile})
+    </insert>
+    <!--개별 목록(상세페이지, 수정)-->
+    <select id="selectByGno" resultType="GoodsVO">
+        select * from goods_tbl where gno=#{gno}
+    </select>
+    <!--상품수정(관리자)-->
+    <update id="updateByGno">
+        update goods_tbl set ggoods=#{ggoods},
+                             gcontent=#{gcontent},
+                             gprice=#{gprice},
+                             gquan=#{gquan},
+                             gimgfile=#{gimgfile} where gno=#{gno}
+    </update>
+    <!--상품삭제(관리자)-->
+    <delete id="deleteByGno">
+        delete from goods_tbl where gno=#{gno}
+    </delete>
+</mapper>
